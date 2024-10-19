@@ -1,12 +1,10 @@
-# Rebuttal Materials - ICML 2024 Submission#5543 "Data-Efficient Operator Learning via Unsupervised Pretraining and In-Context Learning" (https://openreview.net/forum?id=KvnawtOTeR)
-  
-## Data Generation
+# Data Generation
 This repository contains PyTorch code for PDE data generation for Poisson, Helmholtz, Reaction-Diffusion, and Navier-Stokes equationis. The data generation code is adopted respectively from 
 - `NavierStokes`: [PINO](https://github.com/neuraloperator/physics_informed),
 - `PoissonHelmholtz`: [neuraloperators-TL-scaling](https://github.com/ShashankSubramanian/neuraloperators-TL-scaling),
 - `ReactionDiffusion`: [PDEBench](https://github.com/pdebench/PDEBench).
 
-### Environment
+## Environment
 For the necessary packages for generating data for each equation, please follow the environment setup for each paper's repository.
 
 ### Navier-Stokes
@@ -17,7 +15,7 @@ cd NavierStokes
 python generate_data.py --seed 0 --re 300 
 ```
 
-### Poisson and Helmholtz
+## Poisson and Helmholtz
 The following example generates data with `diffusion eigenvalue (e1, e2) = [5, 15]` for Poisson and `wave number (o1, o2) = [5, 15]` for Helmholtz. 
 - Poisson
 In our paper, we utilize diffusion eigenvalue range `(e1, e2) = [1, 20]` for pretraining, `(e1, e2) = [5, 15]` for training and finetuning, and `(e1, e2) = [15, 50]` for out-of-distribution (OOD) testing.
@@ -34,7 +32,7 @@ python utils/gen_data_helmholtz.py --ntrain=2000 --nval=1000 --ntest=1000 \
                     --ng=0 --sparse --n 128 --datapath /datapath --o1 5 --o2 $15
 ```
 
-### Reaction-Diffusion
+## Reaction-Diffusion
 The following example generates data with diffusion coefficients `Du = 1e-3, Dv = 5e-3`. The coefficients can be altered in the [yaml file](ReactionDiffusion/configs/diff-react.yaml):
 ```
 sim:
